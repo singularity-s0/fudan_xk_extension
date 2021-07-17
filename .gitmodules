@@ -1,0 +1,3 @@
+[submodule "captcha_server"]
+	path = captcha_server
+	url = ./captcha_server
