@@ -1,7 +1,14 @@
+// Define Global Variables
+var autoRefresh = 0;
+var autoRefreshTimer;
+var autoSubmitCaptcha = false;
+
 /// Fill in the captcha text box
 function setCaptchaResponse(response) {
     document.getElementsByName("captcha_response")[0].value = response;
-    document.getElementById("stdSubmitButton").click();
+    if (autoSubmitCaptcha) {
+        document.getElementById("stdSubmitButton").click();
+    }
 }
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -36,4 +43,45 @@ function main() {
 }
 
 var img = document.querySelector("[alt='看不清,更换一张']");
-img.addEventListener('load', main)
+img.addEventListener('load', main);
+
+// Auto Refresh
+function refreshLessons() {
+    if (autoRefresh) {
+        document.getElementById("electableLessonList_filter_submit").click();
+    }
+}
+
+// Auto Retry Captcha
+function retryCaptcha() {
+    document.getElementById("cboxClose").click();
+    
+}
+
+// UI
+$(document).ready(function () {
+    'use strict';
+    var refreshButton = document.createElement("button");
+    refreshButton.innerHTML = "Auto Refresh: OFF";
+    refreshButton.onclick = function () {
+        autoRefresh = parseInt(window.prompt("Enter interval in ms. Or cancel to disable auto refresh"));
+        if (isNaN(autoRefresh)) { autoRefresh = 0; }
+        if (autoRefresh <= 0) {
+            refreshButton.innerHTML = "Auto Refresh: OFF";
+            window.clearInterval(autoRefreshTimer);
+        }
+        else {
+            refreshButton.innerHTML = "Auto Refresh: " + autoRefresh + "ms";
+            autoRefreshTimer = window.setInterval(refreshLessons, autoRefresh);
+        }
+    }
+    $("#electDescription").append(refreshButton);
+    
+    var autoSubmitCaptchaButton = document.createElement("button");
+    autoSubmitCaptchaButton.innerHTML = "Auto Submit Captcha: " + autoSubmitCaptcha;
+    autoSubmitCaptchaButton.onclick = function () {
+        autoSubmitCaptcha = !autoSubmitCaptcha;
+        autoSubmitCaptchaButton.innerHTML = "Auto Submit Captcha: " + autoSubmitCaptcha;
+    }
+    $("#electDescription").append(autoSubmitCaptchaButton);
+});
