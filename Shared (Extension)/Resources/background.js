@@ -1,3 +1,8 @@
+// Multi Browser Support
+if (typeof browser === "undefined") {
+    var browser = chrome;
+}
+
 /// Send captcha in base64 to our flask OCR server
 function sendImage(content) {
     $.ajax({

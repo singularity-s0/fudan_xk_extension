@@ -21,7 +21,7 @@
 
     "content_scripts": [{
         "js": [ "jquery-3.6.0.min.js", "content.js" ],
-        "matches": [ "*://*.fudan.edu.cn/*" ]
+        "matches": [ "*://xk.fudan.edu.cn/xk/stdElectCourse!defaultPage.action*" ]
     }],
 
     "browser_action": {

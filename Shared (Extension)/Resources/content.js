@@ -1,3 +1,8 @@
+// Multi Browser Support
+if (typeof browser === "undefined") {
+    var browser = chrome;
+}
+
 // Define Global Variables
 var autoRefresh = 0;
 var autoRefreshTimer;

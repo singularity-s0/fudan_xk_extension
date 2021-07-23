@@ -1,10 +1,10 @@
 {
     "extension_name": {
-        "message": "JS Executer",
+        "message": "fdxk extension",
         "description": "The display name for the extension."
     },
     "extension_description": {
-        "message": "This is JS Executer. You should tell us what your extension does here.",
+        "message": "A helper extension for xk.fudan.edu.cn. Copyright 2021 kavinzhao",
         "description": "Description of what the extension does."
     }
 }
