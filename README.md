@@ -1,11 +1,19 @@
 # fudan_xk_extension
-A browser extension to deal with FDU Course Election
+A browser helper for FDU Course Election
 
 # Set-up
-- First, configure your local CAPTCHA OCR Server. The files are located in ./captcha_server, just install all dependencies and run `main.py`. This will start a local server on port 5000.
-- Second, build and install the Safari Extension. Currently only Safari is supported. The project works on both macOS and iOS but macOS is recommended. You'll need at least Xcode 13.0 (now in beta) to build.
-- Finally, turn on the extension, allow it to run on xk.fudan.edu.cn and done!
+## Chromium & Firefox
+- Load unpacked extension from fudan_xk_extension/Shared (Extension)/Resources/
+- Turn on the extension, allow it to run on xk.fudan.edu.cn and you'll see the options at the top of the page.
+
+## Safari (macOS and iOS)
+- Build and install the Safari Extension.
+- Turn on the extension, allow it to run on xk.fudan.edu.cn and you'll see the options at the top of the page.
 
 # Features
 - Disable confirmation pop-up ("是否提交？") upon submitting course election result.
-- Autofill and submits the captcha
+- Hide courses with time conflict
+- Hide courses that are full
+- Auto refresh
+- Auto elect course if available 
+- Filter courses by final exam
